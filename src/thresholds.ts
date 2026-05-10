@@ -3,7 +3,7 @@
 // budget scales should override `highSpend` (and any other) via the
 // `thresholds` option to `detect()`.
 
-import type { Thresholds, Currency } from "./types.js";
+import type { Thresholds, Currency } from "./types";
 
 export const defaultThresholds: Thresholds = {
   cpaSpikePct: 0.30,           // CPA up >30% week-over-week

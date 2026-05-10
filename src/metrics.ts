@@ -1,7 +1,7 @@
 // Pure metric calculations. No I/O, no side effects.
 // All ratios returned as decimal numbers (0.0234 = 2.34%).
 
-import type { Metrics, DerivedMetrics, MetricsDelta } from "./types.js";
+import type { Metrics, DerivedMetrics, MetricsDelta } from "./types";
 
 const safeDiv = (numerator: number, denominator: number): number => {
   if (!denominator || denominator === 0) return 0;

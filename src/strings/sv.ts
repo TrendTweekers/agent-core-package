@@ -5,7 +5,7 @@
 // "månadsavtal" preferred over "retainer" in customer copy, but anomaly
 // strings don't reference it.
 
-import type { AnomalyStrings } from "./types.js";
+import type { AnomalyStrings } from "./types";
 
 export const sv: AnomalyStrings = {
   cpaSpikeImpact: ({ deltaPct, prevCpa, currCpa }) =>

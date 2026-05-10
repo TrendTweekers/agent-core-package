@@ -6,7 +6,7 @@
 // useGrouping: "always" forces a thousands separator even on 4-digit
 // values like 4623, which keeps Polish/Swedish formatting consistent.
 
-import type { Currency } from "./types.js";
+import type { Currency } from "./types";
 
 // Sensible default locale per currency.
 const DEFAULT_LOCALE: Record<Currency, string> = {

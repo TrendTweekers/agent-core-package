@@ -17,17 +17,17 @@ export type {
   Anomaly,
   CampaignInput,
   Thresholds,
-} from "./types.js";
+} from "./types";
 
-export { derive, delta, sum } from "./metrics.js";
-export { formatMoney } from "./currency.js";
-export { formatPct, formatSignedPct } from "./format.js";
-export { defaultThresholds, marketThresholds } from "./thresholds.js";
-export { detect, trackingRiskAnomaly } from "./detector.js";
-export type { DetectOptions } from "./detector.js";
+export { derive, delta, sum } from "./metrics";
+export { formatMoney } from "./currency";
+export { formatPct, formatSignedPct } from "./format";
+export { defaultThresholds, marketThresholds } from "./thresholds";
+export { detect, trackingRiskAnomaly } from "./detector";
+export type { DetectOptions } from "./detector";
 
 // Pre-built locale strings — consumers pick the one for their market.
-export type { AnomalyStrings } from "./strings/types.js";
-export { pl } from "./strings/pl.js";
-export { es } from "./strings/es.js";
-export { sv } from "./strings/sv.js";
+export type { AnomalyStrings } from "./strings/types";
+export { pl } from "./strings/pl";
+export { es } from "./strings/es";
+export { sv } from "./strings/sv";

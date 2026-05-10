@@ -1,7 +1,7 @@
 // Polish strings — the canonical reference market.
 // Native-speaker reviewed by Peter's wife + multiple polish-pass audits.
 
-import type { AnomalyStrings } from "./types.js";
+import type { AnomalyStrings } from "./types";
 
 export const pl: AnomalyStrings = {
   cpaSpikeImpact: ({ deltaPct, prevCpa, currCpa }) =>

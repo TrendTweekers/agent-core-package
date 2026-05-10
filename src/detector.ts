@@ -12,12 +12,12 @@ import type {
   Metrics,
   Severity,
   Thresholds,
-} from "./types.js";
-import { derive, delta } from "./metrics.js";
-import { formatMoney } from "./currency.js";
-import { formatSignedPct, formatPct } from "./format.js";
-import { defaultThresholds } from "./thresholds.js";
-import type { AnomalyStrings } from "./strings/types.js";
+} from "./types";
+import { derive, delta } from "./metrics";
+import { formatMoney } from "./currency";
+import { formatSignedPct, formatPct } from "./format";
+import { defaultThresholds } from "./thresholds";
+import type { AnomalyStrings } from "./strings/types";
 
 export type DetectOptions = {
   currency: Currency;
