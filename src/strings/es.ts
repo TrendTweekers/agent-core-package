@@ -50,6 +50,27 @@ export const es: AnomalyStrings = {
   trackingRiskLabel:
     "Los resultados reales pueden ser superiores o inferiores a los del panel — requiere verificación.",
 
+  budgetPacingImpact: ({ spendDeltaPct, conversionsDeltaPct }) =>
+    `El gasto ha subido un ${spendDeltaPct} con un cambio en conversiones del ${conversionsDeltaPct} — la campaña puede estar gastando por encima del ritmo previsto.`,
+  budgetPacingAction:
+    "Revisa el ritmo de gasto diario, la configuración del presupuesto y si ha cambiado la estrategia de puja. Verifica la proyección mensual en el panel.",
+  budgetPacingRiskLabel: ({ extraBurn }) =>
+    `~${extraBurn} de gasto extra a la semana sin retorno proporcional`,
+
+  audienceOverlapImpact: ({ note }) =>
+    `Posible solapamiento de audiencias: ${note}`,
+  audienceOverlapAction:
+    "Ejecuta el informe de solapamiento (Audience Overlap) en Meta o Google Audience Manager. Considera consolidar campañas con targeting similar.",
+  audienceOverlapLabel:
+    "Difícil de estimar — requiere el informe de overlap de la plataforma.",
+
+  dayPartingDropImpact: ({ note }) =>
+    `Posible caída de rendimiento en horas/días específicos: ${note}`,
+  dayPartingDropAction:
+    "Revisa la programación (day-parting) en el panel de la campaña. Compara conversiones vs horas de entrega — los huecos suelen ser fines de semana o noches.",
+  dayPartingDropLabel:
+    "Difícil de estimar — requiere desglose horario.",
+
   lowScaleLabel: "Difícil de estimar (escala pequeña)",
   unestimableLabel: "Difícil de estimar",
 };

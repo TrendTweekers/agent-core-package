@@ -46,6 +46,27 @@ export const pl: AnomalyStrings = {
   trackingRiskLabel:
     "Realne wyniki mogą być wyższe lub niższe niż w panelu — wymaga weryfikacji.",
 
+  budgetPacingImpact: ({ spendDeltaPct, conversionsDeltaPct }) =>
+    `Wydatek wzrósł o ${spendDeltaPct} przy zmianie konwersji ${conversionsDeltaPct} — kampania może wydawać poza planowanym tempem.`,
+  budgetPacingAction:
+    "Sprawdź dzienne tempo wydatkowania, ustawienia budżetu i czy nie zmieniła się strategia licytacji. Zweryfikuj prognozę miesięczną w panelu.",
+  budgetPacingRiskLabel: ({ extraBurn }) =>
+    `~${extraBurn} dodatkowego wydatku tygodniowo bez proporcjonalnego zwrotu`,
+
+  audienceOverlapImpact: ({ note }) =>
+    `Możliwe nakładanie się grup odbiorców: ${note}`,
+  audienceOverlapAction:
+    "Uruchom raport nakładania się audytoriów (Audience Overlap) w Meta lub Google Audience Manager. Rozważ konsolidację kampanii o podobnych targetach.",
+  audienceOverlapLabel:
+    "Trudne do oszacowania — wymaga raportu overlap z platformy.",
+
+  dayPartingDropImpact: ({ note }) =>
+    `Możliwy spadek wyników w określonych godzinach/dniach: ${note}`,
+  dayPartingDropAction:
+    "Sprawdź harmonogram (day-parting) w panelu kampanii. Porównaj konwersje vs godziny dostarczania reklam — zwykle problem to weekendy lub późne wieczory.",
+  dayPartingDropLabel:
+    "Trudne do oszacowania — wymaga rozbicia godzinowego.",
+
   lowScaleLabel: "Trudne do oszacowania (mała skala)",
   unestimableLabel: "Trudne do oszacowania",
 };

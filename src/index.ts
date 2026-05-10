@@ -23,7 +23,12 @@ export { derive, delta, sum } from "./metrics";
 export { formatMoney } from "./currency";
 export { formatPct, formatSignedPct } from "./format";
 export { defaultThresholds, marketThresholds } from "./thresholds";
-export { detect, trackingRiskAnomaly } from "./detector";
+export {
+  detect,
+  trackingRiskAnomaly,
+  audienceOverlapAnomaly,
+  dayPartingDropAnomaly,
+} from "./detector";
 export type { DetectOptions } from "./detector";
 
 // Pre-built locale strings — consumers pick the one for their market.

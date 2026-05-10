@@ -12,7 +12,10 @@ export type AnomalyType =
   | "HIGH_SPEND_LOW_CONVERSIONS"
   | "CREATIVE_FATIGUE"
   | "TRACKING_RISK"
-  | "CONVERSION_DROP";
+  | "CONVERSION_DROP"
+  | "BUDGET_PACING_DRIFT"
+  | "AUDIENCE_OVERLAP"
+  | "DAY_PARTING_DROP";
 
 export type Metrics = {
   spend: number;

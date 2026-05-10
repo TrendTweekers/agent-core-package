@@ -51,6 +51,24 @@ export type AnomalyStrings = {
   trackingRiskAction: string;
   trackingRiskLabel: string;
 
+  // Budget pacing drift
+  budgetPacingImpact: (vars: {
+    spendDeltaPct: string;
+    conversionsDeltaPct: string;
+  }) => string;
+  budgetPacingAction: string;
+  budgetPacingRiskLabel: (vars: { extraBurn: string }) => string;
+
+  // Audience overlap
+  audienceOverlapImpact: (vars: { note: string }) => string;
+  audienceOverlapAction: string;
+  audienceOverlapLabel: string;
+
+  // Day-parting drop
+  dayPartingDropImpact: (vars: { note: string }) => string;
+  dayPartingDropAction: string;
+  dayPartingDropLabel: string;
+
   // Generic risk-estimate fallbacks
   lowScaleLabel: string;       // shown when amount-at-risk is too small to estimate
   unestimableLabel: string;    // generic fallback

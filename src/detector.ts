@@ -72,6 +72,19 @@ const estimateAtRisk = (
   if (type === "TRACKING_RISK") {
     return { label: s.trackingRiskLabel, amount: 0 };
   }
+  if (type === "BUDGET_PACING_DRIFT") {
+    const extraBurn = Math.max(0, curr.spend - prev.spend * 1.1);
+    return {
+      label: s.budgetPacingRiskLabel({ extraBurn: fmt(extraBurn) }),
+      amount: extraBurn,
+    };
+  }
+  if (type === "AUDIENCE_OVERLAP") {
+    return { label: s.audienceOverlapLabel, amount: 0 };
+  }
+  if (type === "DAY_PARTING_DROP") {
+    return { label: s.dayPartingDropLabel, amount: 0 };
+  }
   return { label: s.unestimableLabel, amount: 0 };
 };
 
@@ -119,6 +132,30 @@ export const detect = (c: CampaignInput, opts: DetectOptions): Anomaly[] => {
         confidence: c.knownTrackingIssue ? "low" : "medium",
       },
       "CPA_SPIKE"
+    );
+  }
+
+  // 1b) Budget pacing drift — spend up >40% WoW while conversions don't
+  // keep up (either nearly flat or negative). Signals the campaign is
+  // burning faster than the planned monthly pace without proportional
+  // return; usually a bid-strategy change, budget bump, or stale cap.
+  if (
+    dl.spendChange > 0.4 &&
+    (dl.conversionsChange < 0.1 || dl.conversionsChange < 0)
+  ) {
+    push(
+      {
+        type: "BUDGET_PACING_DRIFT",
+        severity: severityFor("BUDGET_PACING_DRIFT", dl.spendChange),
+        clientImpact: s.budgetPacingImpact({
+          spendDeltaPct: formatSignedPct(dl.spendChange),
+          conversionsDeltaPct: formatSignedPct(dl.conversionsChange),
+        }),
+        suggestedAction: s.budgetPacingAction,
+        affectedCampaign: c.campaignLabel,
+        confidence: c.knownTrackingIssue ? "low" : "medium",
+      },
+      "BUDGET_PACING_DRIFT"
     );
   }
 
@@ -217,6 +254,49 @@ export const trackingRiskAnomaly = (
     clientImpact: s.trackingRiskImpact({ note }),
     suggestedAction: s.trackingRiskAction,
     estimatedMoneyAtRisk: s.trackingRiskLabel,
+    moneyAtRisk: 0,
+    affectedCampaign: campaignLabel,
+    confidence: "medium",
+  };
+};
+
+// Audience-overlap anomaly — declared by the operator/auditor based on
+// platform overlap reports, not derivable from spend/conversions alone.
+// Mirrors trackingRiskAnomaly: caller passes a free-text note describing
+// the overlapping audiences.
+export const audienceOverlapAnomaly = (
+  campaignLabel: string,
+  note: string,
+  opts: DetectOptions
+): Anomaly => {
+  const s = opts.strings;
+  return {
+    type: "AUDIENCE_OVERLAP",
+    severity: "medium",
+    clientImpact: s.audienceOverlapImpact({ note }),
+    suggestedAction: s.audienceOverlapAction,
+    estimatedMoneyAtRisk: s.audienceOverlapLabel,
+    moneyAtRisk: 0,
+    affectedCampaign: campaignLabel,
+    confidence: "medium",
+  };
+};
+
+// Day-parting drop anomaly — declared from hourly/day-of-week breakdown
+// inspection. Like AUDIENCE_OVERLAP, this isn't derivable from the
+// weekly aggregate metrics the detector sees.
+export const dayPartingDropAnomaly = (
+  campaignLabel: string,
+  note: string,
+  opts: DetectOptions
+): Anomaly => {
+  const s = opts.strings;
+  return {
+    type: "DAY_PARTING_DROP",
+    severity: "medium",
+    clientImpact: s.dayPartingDropImpact({ note }),
+    suggestedAction: s.dayPartingDropAction,
+    estimatedMoneyAtRisk: s.dayPartingDropLabel,
     moneyAtRisk: 0,
     affectedCampaign: campaignLabel,
     confidence: "medium",

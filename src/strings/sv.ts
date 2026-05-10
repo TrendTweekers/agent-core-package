@@ -50,6 +50,27 @@ export const sv: AnomalyStrings = {
   trackingRiskLabel:
     "Verkliga resultat kan vara högre eller lägre än i panelen — kräver verifiering.",
 
+  budgetPacingImpact: ({ spendDeltaPct, conversionsDeltaPct }) =>
+    `Spend har ökat med ${spendDeltaPct} medan konverteringar ändrats med ${conversionsDeltaPct} — kampanjen kan spendera över planerad takt.`,
+  budgetPacingAction:
+    "Kontrollera daglig spendtakt, budgetinställningar och om bid-strategin ändrats. Verifiera månadsprognos i panelen.",
+  budgetPacingRiskLabel: ({ extraBurn }) =>
+    `~${extraBurn} extra spend per vecka utan proportionell avkastning`,
+
+  audienceOverlapImpact: ({ note }) =>
+    `Möjlig målgruppsöverlappning: ${note}`,
+  audienceOverlapAction:
+    "Kör Audience Overlap-rapport i Meta eller Google Audience Manager. Överväg att konsolidera kampanjer med liknande targeting.",
+  audienceOverlapLabel:
+    "Svårt att uppskatta — kräver overlap-rapport från plattformen.",
+
+  dayPartingDropImpact: ({ note }) =>
+    `Möjligt resultattapp på specifika tider/dagar: ${note}`,
+  dayPartingDropAction:
+    "Granska schemaläggningen (day-parting) i kampanjpanelen. Jämför konverteringar vs visningstider — luckor brukar vara helger eller sena kvällar.",
+  dayPartingDropLabel:
+    "Svårt att uppskatta — kräver timuppdelning.",
+
   lowScaleLabel: "Svårt att uppskatta (liten skala)",
   unestimableLabel: "Svårt att uppskatta",
 };
