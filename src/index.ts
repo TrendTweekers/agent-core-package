@@ -31,3 +31,8 @@ export type { AnomalyStrings } from "./strings/types";
 export { pl } from "./strings/pl";
 export { es } from "./strings/es";
 export { sv } from "./strings/sv";
+
+// ROI calculator — pure savings math for the "what would this save us"
+// widget on demo sites and sales conversations.
+export type { RoiInput, RoiOutput } from "./roi";
+export { computeRoi, ROI_ASSUMPTIONS, ROI_DEFAULTS } from "./roi";
