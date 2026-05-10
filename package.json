@@ -1,0 +1,35 @@
+{
+  "name": "@trendtweekers/agent-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pure-logic engine for AI weekly reporting + anomaly detection. Used by Agent Raportowy (PL), InformeAI (ES), Rapportkollen (SV) demo sites and any future operator/workspace tools.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrendTweekers/agent-core-package.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
